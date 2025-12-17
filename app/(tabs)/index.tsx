@@ -1,98 +1,138 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
+// app/(tabs)/index.tsx
+import React, { useLayoutEffect, useMemo, useState } from 'react';
+import { ScrollView, View, StyleSheet } from 'react-native';
+import { useNavigation } from 'expo-router';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+
+// Import components from the correct path
+import { CATEGORIES, HEADER_CHIPS, SAMPLE_QUICK_ACTIONS } from './data/home-data';
+import CustomSearchHeader, { ProfileButton } from '@/components/homescreen/CustomSearchHeader';
+import WelcomeHeader from '@/components/homescreen/WelcomeHeader';
+import QuickStats from '@/components/homescreen/QuickStats';
+import FilterSection from '@/components/homescreen/FilterSection';
+import CategoriesSection from '@/components/homescreen/CategoriesSection';
+import QuickActionsSection from '@/components/homescreen/QuickActionsSection';
+import MiniDrawer from '@/components/homescreen/MiniDrawer';
+import EnhancedPopup from '@/components/homescreen/EnhancedPopup';
+
+type Card = { id: string; title: string; subtitle?: string; type: 'All' | 'OTP' | 'Finance' | 'Shopping' | 'Others' };
+type PopupContent = Card | any;
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const navigation = useNavigation();
+  const [activeChip, setActiveChip] = useState('all');
+  const [isMiniDrawerOpen, setIsMiniDrawerOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [popupContent, setPopupContent] = useState<PopupContent>(null);
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  const categories: Card[] = useMemo(() => CATEGORIES, []);
+  
+  const filteredCategories = useMemo(() => {
+    const chipToType: Record<string, Card['type']> = {
+      all: 'All',
+      otp: 'OTP',
+      finance: 'Finance',
+      shopping: 'Shopping',
+      others: 'Others',
+    };
+    const byChip = chipToType[activeChip] === 'All' ? categories : categories.filter((c) => c.type === chipToType[activeChip]);
+    const q = query.trim().toLowerCase();
+    if (!q) return byChip;
+    return byChip.filter((c) => c.title.toLowerCase().includes(q) || (c.subtitle ?? '').toLowerCase().includes(q));
+  }, [categories, activeChip, query]);
+
+  const handleCardPress = (content: PopupContent) => {
+    setPopupContent(content);
+    setIsPopupVisible(true);
+  };
+
+  useLayoutEffect(() => {
+    // Hide the default header since we're using custom headers in the content
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, [navigation]);
+
+  return (
+    <View style={styles.container}>
+      {/* Hide the default header and use custom layout */}
+       {/* Search Header - Below Welcome Header */}
+        <View style={styles.searchSection}>
+          <CustomSearchHeader 
+            value={query} 
+            onChangeText={setQuery}
+            onProfilePress={() => setIsMiniDrawerOpen(true)}
+          />
+        </View>
+
+     
+        {/* Welcome Header - At the top */}
+        <WelcomeHeader categoriesCount={categories.length} />
+
+       
+        {/* Quick Stats */}
+        <QuickStats />
+
+         {/* Main Content with Scroll */}
+      <ScrollView 
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+
+        {/* Filter Section */}
+        <FilterSection 
+          chips={HEADER_CHIPS}
+          activeChip={activeChip}
+          onChipSelect={setActiveChip}
+        />
+
+        {/* Categories Section */}
+        <CategoriesSection 
+          categories={filteredCategories}
+          onCategoryPress={handleCardPress}
+        />
+
+        {/* Quick Actions Section */}
+        <QuickActionsSection 
+          actions={SAMPLE_QUICK_ACTIONS}
+          onActionPress={handleCardPress}
+        />
+      </ScrollView>
+
+      {/* Mini Drawer */}
+      <MiniDrawer 
+        visible={isMiniDrawerOpen} 
+        onClose={() => setIsMiniDrawerOpen(false)} 
+      />
+
+      {/* Enhanced Popup */}
+      <EnhancedPopup
+        visible={isPopupVisible}
+        content={popupContent}
+        onClose={() => setIsPopupVisible(false)}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: '#F8FAFC',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  scrollView: {
+    flex: 1,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  scrollContent: {
+    paddingBottom: 100,
+  },
+  searchSection: {
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 16,
+    paddingVertical: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F1F5F9',
   },
 });
