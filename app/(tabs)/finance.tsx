@@ -6,7 +6,7 @@ import { ThemedText } from '@/components/themed-text';
 import PinSetupScreen from '../financial/pin-setup';
 import PinEntryScreen from '../financial/pin-entry';
 import ProtectedContent from '../financial/protected-content';
-import { PinService } from '../utils/pin-service';
+import { PinService } from '@/utils/pin-service';
 
 
 export default function FinancialScreen() {

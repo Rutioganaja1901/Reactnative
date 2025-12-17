@@ -1,11 +1,11 @@
 // components/FilterChips.tsx
-import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { COLORS, FILTER_CHIPS, GRADIENTS } from '@/constants/constants';
+import { ChipStatus } from '@/types/types';
 import { Ionicons } from '@expo/vector-icons';
-import { MotiView } from 'moti';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ChipStatus } from '@/app/types/types';
-import { COLORS, GRADIENTS, FILTER_CHIPS } from '@/constants/constants';
+import { MotiView } from 'moti';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface FilterChipsProps {
   selected: ChipStatus;

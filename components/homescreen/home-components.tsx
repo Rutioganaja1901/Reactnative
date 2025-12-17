@@ -5,8 +5,8 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
+import { CategoryCard as CategoryCardType, DetailedQuickAction as DetailedQuickActionType } from '@/data/home-data';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { DetailedQuickAction as DetailedQuickActionType, CategoryCard as CategoryCardType } from './home-data'; // Import types
 
 export function SearchHeader({ value, onChangeText }: { value: string; onChangeText: (v: string) => void }) {
   const colorScheme = useColorScheme();
@@ -471,3 +471,4 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
 });
+

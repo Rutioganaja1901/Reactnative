@@ -1,5 +1,5 @@
 // constants.ts
-import { Reminder, GradientColors } from '@/app/types/types';
+import { GradientColors, Reminder } from '@/types/types';
 
 // --- Color Palette ---
 export const COLORS = {

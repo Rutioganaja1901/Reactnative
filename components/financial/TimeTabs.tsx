@@ -1,7 +1,7 @@
 // app/financial/components/TimeTabs.tsx
-import { ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
-import { tabs } from '@/app/data/mockData';
+import { tabs } from '@/data/mockData';
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 
 interface TimeTabsProps {

@@ -1,4 +1,4 @@
-// app/(tabs)/data/home-data.ts
+// data/home-data.ts
 export const CATEGORIES = [
   { id: '1', title: 'OTP Messages', subtitle: 'One-time passwords', type: 'OTP' },
   { id: '2', title: 'Bank Alerts', subtitle: 'Financial notifications', type: 'Finance' },
@@ -19,3 +19,19 @@ export const SAMPLE_QUICK_ACTIONS = [
   { id: '2', title: 'Filter', description: 'Filter content', icon: 'filter' },
   { id: '3', title: 'Export', description: 'Export data', icon: 'download' },
 ];
+
+// Type exports for components
+export interface CategoryCard {
+  id: string;
+  title: string;
+  subtitle?: string;
+  type?: string;
+}
+
+export interface DetailedQuickAction {
+  id: string;
+  title: string;
+  description: string;
+  icon?: string;
+}
+

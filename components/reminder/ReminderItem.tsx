@@ -1,11 +1,11 @@
 // components/ReminderItem.tsx
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { MotiView } from 'moti';
-import { LinearGradient } from 'expo-linear-gradient';
-import { ChipStatus, Reminder } from '@/app/types/types';
 import { COLORS, GRADIENTS, TYPE_CHIPS } from '@/constants/constants';
+import { ChipStatus, Reminder } from '@/types/types';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { MotiView } from 'moti';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 
 interface ReminderItemProps {

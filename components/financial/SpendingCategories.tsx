@@ -1,9 +1,9 @@
 // app/financial/components/SpendingCategories.tsx
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { categories } from '@/data/mockData';
 import { Ionicons } from '@expo/vector-icons';
-import { categories } from '@/app/data/mockData';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 
 export default function SpendingCategories() {

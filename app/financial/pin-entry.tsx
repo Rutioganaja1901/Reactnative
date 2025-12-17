@@ -5,7 +5,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
 import { Ionicons } from '@expo/vector-icons';
-import { PinService } from '../utils/pin-service';
+import { PinService } from '@/utils/pin-service';
 
 interface PinEntryScreenProps {
   onPinVerified: () => void;

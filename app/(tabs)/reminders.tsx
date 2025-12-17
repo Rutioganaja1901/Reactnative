@@ -1,29 +1,29 @@
 // reminders.tsx
-import React, { useState } from 'react';
-import { 
-  View, 
-  ScrollView, 
-  StyleSheet, 
-  Dimensions, 
-  Text, 
-  TouchableOpacity 
-} from 'react-native';
-import { MotiView } from 'moti';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { MotiView } from 'moti';
+import React, { useState } from 'react';
+import {
+  Dimensions,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
 // Import components
 
 
 // Import types and constants
 
-import { COLORS, GRADIENTS, DUMMY_REMINDERS } from '@/constants/constants';
-import ReminderItem from '@/components/reminder/ReminderItem';
-import NoRemindersCard from '@/components/reminder/NoRemindersCard';
-import TypeChips from '@/components/reminder/TypeChips';
 import FilterChips from '@/components/reminder/FilterChips';
+import NoRemindersCard from '@/components/reminder/NoRemindersCard';
+import ReminderItem from '@/components/reminder/ReminderItem';
 import RemindersHeader from '@/components/reminder/RemindersHeader';
-import { ChipStatus, ChipType } from '../types/types';
+import TypeChips from '@/components/reminder/TypeChips';
+import { COLORS, DUMMY_REMINDERS, GRADIENTS } from '@/constants/constants';
+import { ChipStatus, ChipType } from '@/types/types';
 
 export default function RemindersScreen() {
   const [filterStatus, setFilterStatus] = useState<ChipStatus>('All');

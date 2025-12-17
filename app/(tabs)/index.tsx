@@ -1,19 +1,18 @@
 // app/(tabs)/index.tsx
-import React, { useLayoutEffect, useMemo, useState } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
 import { useNavigation } from 'expo-router';
-import { ThemedView } from '@/components/themed-view';
+import React, { useLayoutEffect, useMemo, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 // Import components from the correct path
-import { CATEGORIES, HEADER_CHIPS, SAMPLE_QUICK_ACTIONS } from './data/home-data';
-import CustomSearchHeader, { ProfileButton } from '@/components/homescreen/CustomSearchHeader';
-import WelcomeHeader from '@/components/homescreen/WelcomeHeader';
-import QuickStats from '@/components/homescreen/QuickStats';
-import FilterSection from '@/components/homescreen/FilterSection';
 import CategoriesSection from '@/components/homescreen/CategoriesSection';
-import QuickActionsSection from '@/components/homescreen/QuickActionsSection';
-import MiniDrawer from '@/components/homescreen/MiniDrawer';
+import CustomSearchHeader from '@/components/homescreen/CustomSearchHeader';
 import EnhancedPopup from '@/components/homescreen/EnhancedPopup';
+import FilterSection from '@/components/homescreen/FilterSection';
+import MiniDrawer from '@/components/homescreen/MiniDrawer';
+import QuickActionsSection from '@/components/homescreen/QuickActionsSection';
+import QuickStats from '@/components/homescreen/QuickStats';
+import WelcomeHeader from '@/components/homescreen/WelcomeHeader';
+import { CATEGORIES, HEADER_CHIPS, SAMPLE_QUICK_ACTIONS } from '@/data/home-data';
 
 type Card = { id: string; title: string; subtitle?: string; type: 'All' | 'OTP' | 'Finance' | 'Shopping' | 'Others' };
 type PopupContent = Card | any;

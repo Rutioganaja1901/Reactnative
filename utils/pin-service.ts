@@ -1,4 +1,4 @@
-// app/utils/pin-service.ts
+// utils/pin-service.ts
 let pinStorage: string | null = null;
 
 export const PinService = {
@@ -38,3 +38,4 @@ export const PinService = {
     }
   },
 };
+

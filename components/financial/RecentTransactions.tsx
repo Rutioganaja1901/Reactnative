@@ -1,9 +1,8 @@
 // app/financial/components/RecentTransactions.tsx
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+import { getTransactionColor, getTransactionIcon, transactions } from '@/data/mockData';
 import { Ionicons } from '@expo/vector-icons';
-import { getTransactionColor, getTransactionIcon, transactions } from '@/app/data/mockData';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 
 export default function RecentTransactions() {

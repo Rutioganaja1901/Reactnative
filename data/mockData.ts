@@ -1,4 +1,4 @@
-// app/financial/data/mockData.ts
+// data/mockData.ts
 export const tabs = ['Today', 'Week', 'Month', 'Quarter', 'Year'];
 
 export const spendingData = {
@@ -52,3 +52,4 @@ export const getTransactionColor = (type: string) => {
     default: return '#98D8C8';
   }
 };
+

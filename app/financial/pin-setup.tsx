@@ -1,11 +1,11 @@
 // app/financial/pin-setup.tsx
-import { useState } from 'react';
-import { ScrollView, StyleSheet, Alert, TouchableOpacity, View } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useState } from 'react';
+import { Alert, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
+import { PinService } from '@/utils/pin-service';
 import { Ionicons } from '@expo/vector-icons';
-import { PinService } from '../utils/pin-service';
 
 interface PinSetupScreenProps {
   onPinSet: () => void;

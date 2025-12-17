@@ -1,9 +1,8 @@
 // app/financial/components/FraudAlerts.tsx
-import { View, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+import { fraudAlerts } from '@/data/mockData';
 import { Ionicons } from '@expo/vector-icons';
-import { fraudAlerts } from '@/app/data/mockData';
+import { StyleSheet, View } from 'react-native';
 
 
 export default function FraudAlerts() {

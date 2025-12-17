@@ -1,4 +1,4 @@
-// types.ts
+// types/types.ts
 export type ChipStatus = 'All' | 'Pending' | 'Completed' | 'Overdue';
 export type ChipType = 'Bills' | 'Appointments' | 'Travel' | 'Payments' | 'Events' | 'Tasks';
 
@@ -12,3 +12,4 @@ export interface Reminder {
 }
 
 export type GradientColors = [string, string, ...string[]];
+

@@ -1,9 +1,8 @@
 // app/financial/components/UpcomingBills.tsx
-import { View, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+import { upcomingBills } from '@/data/mockData';
 import { Ionicons } from '@expo/vector-icons';
-import { upcomingBills } from '@/app/data/mockData';
+import { StyleSheet, View } from 'react-native';
 
 
 export default function UpcomingBills() {

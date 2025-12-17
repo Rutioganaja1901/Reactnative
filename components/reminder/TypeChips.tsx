@@ -1,11 +1,11 @@
 // components/TypeChips.tsx
-import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { MotiView } from 'moti';
-import { LinearGradient } from 'expo-linear-gradient';
-import { ChipType } from '@/app/types/types';
 import { COLORS, GRADIENTS, TYPE_CHIPS } from '@/constants/constants';
+import { ChipType } from '@/types/types';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { MotiView } from 'moti';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface TypeChipsProps {
   selected: ChipType | null;
