@@ -13,3 +13,4 @@ export interface Reminder {
 
 export type GradientColors = [string, string, ...string[]];
 
+
